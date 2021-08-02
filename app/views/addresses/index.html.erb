@@ -1,0 +1,45 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Addresses</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%= link_to new_address_path, class: 'btn btn-primary' do %>
+    Add New Address
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Country</th>
+            <th>State</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @addresses.each do |address| %>
+        <%= content_tag :tr, id: dom_id(address), class: dom_class(address) do %>
+          
+
+                      <td><%= address.country %></td>
+                      <td><%= address.state %></td>
+          
+          
+            <td><%= link_to 'Show', address %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>

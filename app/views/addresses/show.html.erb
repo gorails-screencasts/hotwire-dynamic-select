@@ -1,0 +1,16 @@
+<div class="page-header">
+  <%= link_to addresses_path, class: 'btn btn-default' do %>
+    All Addresses
+  <% end %>
+  <%= link_to edit_address_path(@address), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show address</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Country:</dt>
+  <dd><%= @address.country %></dd>
+  <dt>State:</dt>
+  <dd><%= @address.state %></dd>
+</dl>

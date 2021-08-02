@@ -1,0 +1,41 @@
+<%= form_with(model: address, local: true) do |form| %>
+  <% if address.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(address.errors.count, "error") %> prohibited this address from being saved:</h2>
+
+      <ul>
+      <% address.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div data-controller="select" data-select-url-value="<%= states_addresses_path %>" data-select-param-value="country">
+    <div class="mb-3">
+      <%= form.label :country, class: 'form-label' %>
+      <%= form.select :country, CS.countries.invert, { prompt: "Select a country" }, { class: 'form-select', data: { action: "change->select#change" } } %>
+    </div>
+
+    <div class="mb-3">
+      <%= form.label :state, class: 'form-label' %>
+      <%= form.select :state, [], {}, { id: nil, class: 'form-select', data: { select_target: "select" } } %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <% if address.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', address, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if address.persisted? %>
+      <%= link_to "Cancel", address, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", addresses_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>
