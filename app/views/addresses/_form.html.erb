@@ -19,7 +19,7 @@
 
     <div class="mb-3">
       <%= form.label :state, class: 'form-label' %>
-      <%= form.select :state, [], {}, { id: nil, class: 'form-select', data: { select_target: "select" } } %>
+      <%= form.select :state, (form.object.country? ? CS.get(form.object.country) : []), {}, { id: nil, class: 'form-select', data: { select_target: "select" } } %>
     </div>
   </div>
 
